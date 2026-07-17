@@ -1,13 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.routes.resume import router as resume_router
 
-app = FastAPI(
-    title="SkillProof API",
-    version="1.0.0"
-)
+app = FastAPI()
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
@@ -18,8 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(resume_router)
+
 @app.get("/")
 def home():
-    return {
-        "message": "SkillProof Backend Running 🚀"
-    }
+    return {"message": "SkillProof Backend Running 🚀"}

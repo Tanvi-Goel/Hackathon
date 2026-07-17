@@ -1,7 +1,7 @@
-import Home from "./pages/Home";
+import UploadResume from "./pages/UploadResume";
 
 function App() {
-  return <Home />;
+  return <UploadResume />;
 }
 
 export default App;
