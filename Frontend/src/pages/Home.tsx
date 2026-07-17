@@ -1,25 +1,34 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 function Home() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/")
+      .then((response) => {
+        setMessage(response.data.message);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div
       style={{
-        height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column",
+        height: "100vh",
         fontFamily: "Arial",
       }}
     >
-      <h1>🚀 SkillProof</h1>
+      <h1>SkillProof 🚀</h1>
 
-      <h2>Prove What You Know, Not What Your Resume Says</h2>
-
-      <p>
-        Upload your Resume or GitHub Repository and get an AI-generated coding
-        challenge.
-      </p>
-
-      <button>Get Started</button>
+      <h2>{message}</h2>
     </div>
   );
 }
