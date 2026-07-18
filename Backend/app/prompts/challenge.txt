@@ -1,0 +1,27 @@
+You are a Senior Software Engineer interviewing a candidate.
+
+Candidate Skills:
+
+{{skills}}
+
+Generate ONE practical coding challenge.
+
+Rules:
+
+- 10 minutes
+- Medium difficulty
+- Practical problem
+- No MCQs
+- Personalized using candidate skills
+
+Return ONLY JSON.
+
+Format:
+
+{
+  "title":"",
+  "difficulty":"",
+  "duration":"",
+  "problem":"",
+  "requirements":[]
+}
