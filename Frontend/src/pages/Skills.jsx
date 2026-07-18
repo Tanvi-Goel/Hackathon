@@ -13,8 +13,13 @@ function Skills() {
   useEffect(() => {
     const stored = localStorage.getItem("resumeData");
     const data = stored ? JSON.parse(stored) : null;
+    const rawSkills = data?.skills ?? data?.result?.skills ?? [];
 
-    setSkills(data?.skills ?? []);
+    const normalizedSkills = rawSkills
+      .map((skill) => (typeof skill === "string" ? skill : skill?.name || ""))
+      .filter(Boolean);
+
+    setSkills(normalizedSkills);
   }, []);
 
   const generateChallenge = async () => {

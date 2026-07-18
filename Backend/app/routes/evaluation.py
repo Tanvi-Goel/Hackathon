@@ -9,14 +9,16 @@ router = APIRouter()
 class EvaluationRequest(BaseModel):
     challenge: str
     solution: str
-
+    language: str | None = "javascript"
 
 @router.post("/evaluate-code")
 def evaluate(request: EvaluationRequest):
 
     result = evaluate_solution(
         request.challenge,
-        request.solution
+        request.solution,
+        language=request.language
+
     )
 
     return result
