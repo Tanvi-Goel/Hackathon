@@ -24,7 +24,14 @@ function Proof() {
 
   const resumeData = JSON.parse(localStorage.getItem("resumeData")) || {};
   const candidateName =
-    resumeData.candidate_name || proof.candidateName || proof.name || proof.resumeName || resumeData.name || resumeData.filename || resumeData.resumeName || "Candidate";
+    resumeData.candidate_name ||
+    proof.candidateName ||
+    proof.name ||
+    proof.resumeName ||
+    resumeData.name ||
+    resumeData.filename ||
+    resumeData.resumeName ||
+    "Candidate";
 
   const today = new Date().toLocaleDateString("en-GB");
 
@@ -68,7 +75,7 @@ function Proof() {
 
         <div
           ref={certificateRef}
-          className="bg-white text-black rounded-3xl p-14 mt-10 border-[12px] border-violet-700"
+          className="bg-white text-black rounded-3xl p-14 mt-10 border-12 border-violet-700"
         >
           <div className="flex justify-center">
             <ShieldCheck size={70} className="text-violet-700" />

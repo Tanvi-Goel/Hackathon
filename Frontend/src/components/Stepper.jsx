@@ -40,7 +40,7 @@ function Stepper() {
           </Link>
 
           {index !== steps.length - 1 && (
-            <div className="flex-1 h-[2px] bg-gray-700 mx-3"></div>
+            <div className="flex-1 h-1 bg-gray-700 mx-3 justify-center"></div>
           )}
         </div>
       ))}
