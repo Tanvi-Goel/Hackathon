@@ -13,7 +13,7 @@ function Home() {
           Prove What You Know
         </h2>
 
-        <h2 className="text-5xl font-bold mt-2 text-violet-400">
+        <h2 className="text-5xl font-bold mt-2 text-cyan-400">
           Not What Your Resume Says
         </h2>
 

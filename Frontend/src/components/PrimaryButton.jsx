@@ -2,7 +2,7 @@ function PrimaryButton({ text, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="w-full rounded-xl bg-violet-600 hover:bg-violet-700 transition py-3 font-semibold"
+      className="w-full rounded-xl bg-cyan-500 hover:bg-cyan-400 transition duration-200 py-3 font-semibold shadow-lg shadow-cyan-500/20"
     >
       {text}
     </button>

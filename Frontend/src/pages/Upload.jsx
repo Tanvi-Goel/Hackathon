@@ -65,13 +65,13 @@ function UploadPage() {
           We'll analyze your resume and extract your skills automatically.
         </p>
 
-        <div className="bg-[#14141f] border border-violet-700 rounded-3xl p-8">
+        <div className="bg-slate-950/90 border border-cyan-700/40 rounded-3xl p-8 shadow-[0_40px_120px_-90px_rgba(6,182,212,0.7)]">
 
-          <div className="border-2 border-dashed border-violet-600 rounded-2xl p-10 text-center">
+          <div className="border-2 border-dashed border-cyan-500/60 rounded-2xl p-10 text-center">
 
             <Upload
               size={70}
-              className="mx-auto text-violet-500"
+              className="mx-auto text-cyan-400"
             />
 
             <p className="mt-6 text-lg">
@@ -89,7 +89,7 @@ function UploadPage() {
 
             <label
               htmlFor="resume"
-              className="cursor-pointer inline-block mt-6 bg-violet-600 px-8 py-3 rounded-xl hover:bg-violet-700"
+              className="cursor-pointer inline-block mt-6 bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-400 transition duration-200"
             >
               Browse Files
             </label>
@@ -126,9 +126,9 @@ function UploadPage() {
 
           )}
 
-          <div className="mt-6 bg-[#1b1b28] rounded-xl p-5 flex gap-4">
+          <div className="mt-6 bg-slate-900/90 rounded-xl p-5 flex gap-4 border border-cyan-700/20">
 
-            <ShieldCheck className="text-violet-400" />
+            <ShieldCheck className="text-cyan-400" />
 
             <div>
 
@@ -147,9 +147,16 @@ function UploadPage() {
           <button
             onClick={uploadResume}
             disabled={loading}
-            className="mt-8 w-full bg-violet-600 hover:bg-violet-700 rounded-xl py-4 font-bold"
+            className="mt-8 w-full inline-flex items-center justify-center gap-3 bg-cyan-500 hover:bg-cyan-400 rounded-xl py-4 font-bold transition duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? "Analyzing Resume..." : "Extract Skills"}
+            {loading ? (
+              <>
+                <span className="inline-block h-4 w-4 rounded-full border-2 border-cyan-200 border-t-transparent animate-spin" />
+                Analyzing Resume...
+              </>
+            ) : (
+              "Extract Skills"
+            )}
           </button>
 
         </div>

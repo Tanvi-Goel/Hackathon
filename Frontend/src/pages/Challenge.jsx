@@ -36,10 +36,10 @@ function Challenge() {
           Based on your skills, we've created a custom coding challenge.
         </p>
 
-        <div className="bg-[#161622] rounded-2xl border border-violet-700 p-8 shadow-lg">
+        <div className="bg-slate-950/90 rounded-2xl border border-cyan-700 p-8 shadow-[0_24px_80px_-40px_rgba(6,182,212,0.75)]">
 
           {/* Title */}
-          <h2 className="text-3xl font-bold text-violet-400">
+          <h2 className="text-3xl font-bold text-cyan-300">
             {challenge.title}
           </h2>
 
@@ -66,7 +66,7 @@ function Challenge() {
                   key={index}
                   className="flex items-start gap-3 text-gray-300"
                 >
-                  <span className="text-violet-400 mt-1">✔</span>
+                  <span className="text-cyan-300 mt-1">✔</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -76,7 +76,7 @@ function Challenge() {
           {/* Duration & Difficulty */}
           <div className="grid grid-cols-2 gap-6 mt-10">
 
-            <div className="bg-[#1f1f2d] rounded-xl p-5 border border-violet-800">
+            <div className="bg-slate-900 rounded-xl p-5 border border-cyan-800">
               <p className="text-gray-400 text-sm">
                 Duration
               </p>
@@ -86,12 +86,12 @@ function Challenge() {
               </h3>
             </div>
 
-            <div className="bg-[#1f1f2d] rounded-xl p-5 border border-violet-800">
+            <div className="bg-slate-900 rounded-xl p-5 border border-cyan-800">
               <p className="text-gray-400 text-sm">
                 Difficulty
               </p>
 
-              <h3 className="text-2xl font-bold text-violet-400 mt-2">
+              <h3 className="text-2xl font-bold text-cyan-300 mt-2">
                 {challenge.difficulty}
               </h3>
             </div>
@@ -102,7 +102,7 @@ function Challenge() {
 
         <button
           onClick={() => navigate("/evaluation")}
-          className="mt-8 w-full bg-violet-600 hover:bg-violet-700 transition rounded-xl py-4 text-lg font-semibold"
+          className="mt-8 w-full bg-cyan-500 hover:bg-cyan-400 transition rounded-xl py-4 text-lg font-semibold"
         >
           Start Challenge →
         </button>

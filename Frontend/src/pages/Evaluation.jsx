@@ -150,9 +150,9 @@ function Evaluation() {
 
         {/* Challenge */}
 
-        <div className="mt-8 bg-[#161622] border border-violet-700 rounded-xl p-6">
+        <div className="mt-8 bg-slate-950/90 border border-cyan-700 rounded-xl p-6 shadow-[0_24px_80px_-40px_rgba(6,182,212,0.65)]">
 
-          <h2 className="text-2xl font-bold text-violet-400">
+          <h2 className="text-2xl font-bold text-cyan-300">
             {challenge.title}
           </h2>
 
@@ -197,7 +197,7 @@ function Evaluation() {
           <select
             value={language}
             onChange={(e) => changeLanguage(e.target.value)}
-            className="bg-[#1b1b2d] border border-violet-700 rounded-lg px-4 py-2"
+            className="bg-slate-900 border border-cyan-700 rounded-lg px-4 py-2 text-white"
           >
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
@@ -206,7 +206,7 @@ function Evaluation() {
             <option value="csharp">C#</option>
           </select>
 
-          <div className="text-violet-300 font-semibold">
+          <div className="text-cyan-300 font-semibold">
             ⏱ {formatTime()}
           </div>
 
@@ -214,7 +214,7 @@ function Evaluation() {
 
         {/* Editor */}
 
-        <div className="mt-4 border border-violet-700 rounded-xl overflow-hidden">
+        <div className="mt-4 border border-cyan-700 rounded-xl overflow-hidden shadow-[0_20px_80px_-50px_rgba(6,182,212,0.45)]">
 
           <Editor
             height="550px"
@@ -240,7 +240,7 @@ function Evaluation() {
 
           <button
             onClick={runCode}
-            className="flex-1 py-4 rounded-xl bg-gray-800 hover:bg-gray-700"
+            className="flex-1 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition duration-150"
           >
             ▶ Run Code
           </button>
@@ -248,18 +248,25 @@ function Evaluation() {
           <button
             onClick={submitSolution}
             disabled={loading}
-            className="flex-1 py-4 rounded-xl bg-violet-600 hover:bg-violet-700"
+            className="flex-1 inline-flex items-center justify-center gap-3 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 transition duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? "Evaluating..." : "Submit Solution"}
+            {loading ? (
+              <>
+                <span className="inline-block h-4 w-4 rounded-full border-2 border-cyan-200 border-t-transparent animate-spin" />
+                Evaluating...
+              </>
+            ) : (
+              "Submit Solution"
+            )}
           </button>
 
         </div>
 
         {/* Console */}
 
-        <div className="mt-8 bg-[#161622] border border-violet-700 rounded-xl">
+        <div className="mt-8 bg-slate-950/90 border border-cyan-700 rounded-xl shadow-[0_20px_80px_-50px_rgba(6,182,212,0.5)]">
 
-          <div className="border-b border-violet-700 px-5 py-3 font-semibold">
+          <div className="border-b border-cyan-700 px-5 py-3 font-semibold">
             Console
           </div>
 

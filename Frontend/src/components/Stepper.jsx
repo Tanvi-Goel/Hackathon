@@ -22,14 +22,14 @@ function Stepper() {
             to={step.path}
             className={`flex flex-col items-center ${
               location.pathname === step.path
-                ? "text-violet-400"
+                ? "text-cyan-300"
                 : "text-gray-500"
             }`}
           >
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center border-2 font-bold ${
                 location.pathname === step.path
-                  ? "border-violet-500 bg-violet-600 text-white"
+                  ? "border-cyan-500 bg-cyan-600 text-white"
                   : "border-gray-600"
               }`}
             >

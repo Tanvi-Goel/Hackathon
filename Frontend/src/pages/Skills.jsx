@@ -72,18 +72,18 @@ function Skills() {
 
         <div className="flex justify-center mt-10">
 
-          <div className="w-56 h-56 rounded-full border-4 border-violet-600 flex flex-col justify-center items-center">
+          <div className="w-56 h-56 rounded-full border-4 border-cyan-500/70 flex flex-col justify-center items-center bg-slate-950/70 shadow-[0_24px_60px_-30px_rgba(6,182,212,0.9)]">
 
             <Brain
               size={55}
-              className="text-violet-400"
+              className="text-cyan-300"
             />
 
             <h2 className="mt-4 text-xl font-bold">
               AI Analysis
             </h2>
 
-            <p className="text-violet-400">
+            <p className="text-cyan-300">
               Complete
             </p>
 
@@ -99,7 +99,7 @@ function Skills() {
 
             <div
               key={index}
-              className="bg-[#161622] border border-violet-700 rounded-xl p-5 text-center hover:scale-105 duration-300"
+              className="bg-slate-900/90 border border-cyan-700 rounded-xl p-5 text-center hover:scale-105 duration-300"
             >
               {skill}
             </div>
@@ -111,11 +111,16 @@ function Skills() {
         <button
           onClick={generateChallenge}
           disabled={loading}
-          className="mt-12 w-full bg-violet-600 hover:bg-violet-700 rounded-xl py-4 font-bold"
+          className="mt-12 w-full inline-flex items-center justify-center gap-3 bg-cyan-500 hover:bg-cyan-400 rounded-xl py-4 font-bold transition duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {loading
-            ? "Generating Challenge..."
-            : "Generate Challenge"}
+          {loading ? (
+            <>
+              <span className="inline-block h-4 w-4 rounded-full border-2 border-cyan-200 border-t-transparent animate-spin" />
+              Generating Challenge...
+            </>
+          ) : (
+            "Generate Challenge"
+          )}
         </button>
 
       </div>
