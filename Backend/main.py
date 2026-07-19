@@ -13,18 +13,24 @@ app = FastAPI()
 def _get_allowed_origins():
     # Read comma-separated origins from environment variable FRONTEND_URLS
     env = os.getenv("FRONTEND_URLS")
+
     defaults = [
         "http://localhost:5173",
-        "https://hackathon-eiti.vercel.app",
+        "https://hackathon-iy6o.vercel.app",
     ]
+
     if not env:
         return defaults
+
     parts = [p.strip() for p in env.split(",") if p.strip()]
-    # merge defaults and env-provided, preserving unique values
+
+    # Merge environment origins and defaults
     origins = []
-    for u in parts + defaults:
-        if u not in origins:
-            origins.append(u)
+
+    for url in parts + defaults:
+        if url not in origins:
+            origins.append(url)
+
     return origins
 
 
@@ -38,11 +44,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(resume_router)
 app.include_router(challenge_router)
 app.include_router(evaluation_router)
 app.include_router(proof_router)
 
+
 @app.get("/")
 def home():
-    return {"message": "SkillProof Backend Running 🚀"}
+    return {
+        "message": "SkillProof Backend Running 🚀",
+        "allowed_origins": origins
+    }
