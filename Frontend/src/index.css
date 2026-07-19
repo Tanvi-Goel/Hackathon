@@ -14,3 +14,29 @@ body {
   color: white;
   font-family: Inter, Arial, sans-serif;
 }
+
+@keyframes slowBlob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, -18px) scale(1.05);
+  }
+}
+
+@keyframes slowWave {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-22px, 14px) scale(1.03);
+  }
+}
+
+.animate-slow-blob {
+  animation: slowBlob 32s ease-in-out infinite;
+}
+
+.animate-slow-wave {
+  animation: slowWave 38s ease-in-out infinite;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import Layout from "../components/Layout";
 import api from "../services/api";
 import { Brain } from "lucide-react";
@@ -97,12 +98,15 @@ function Skills() {
 
           {skills.map((skill, index) => (
 
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
               className="bg-slate-900/90 border border-cyan-700 rounded-xl p-5 text-center hover:scale-105 duration-300"
             >
               {skill}
-            </div>
+            </motion.div>
 
           ))}
 
