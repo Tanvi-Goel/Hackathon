@@ -14,7 +14,10 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 async def upload_resume(file: UploadFile = File(...)):
     try:
         # Save uploaded file
-        file_path = os.path.join(UPLOAD_FOLDER, os.path.basename(file.filename))
+        file_path = os.path.join(
+            UPLOAD_FOLDER,
+            os.path.basename(file.filename)
+        )
 
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
@@ -27,18 +30,19 @@ async def upload_resume(file: UploadFile = File(...)):
         for page in reader.pages:
             page_text = page.extract_text()
             if page_text:
-                text += page_text
+                text += page_text + "\n"
 
         print("\n========== RESUME TEXT ==========")
-        print(text[:1000])   # Print first 1000 characters
+        print(text[:1500])
         print("=================================\n")
 
-        # Extract skills using AI
-        skills = extract_skills(text)
+        # AI Extraction
+        parsed_data = extract_skills(text)
 
         return {
             "filename": file.filename,
-            "result": skills
+            "candidate_name": parsed_data.get("name", ""),
+            "skills": parsed_data.get("skills", [])
         }
 
     except Exception as exc:

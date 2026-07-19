@@ -106,16 +106,25 @@ function Evaluation() {
       setLoading(true);
 
       const challenge = JSON.parse(localStorage.getItem("challengeData"));
+      const resumeData = JSON.parse(localStorage.getItem("resumeData")) || {};
+      const candidateName =
+        resumeData.candidate_name || resumeData.name || resumeData.filename || resumeData.resumeName || "Candidate";
 
       const response = await api.post("/evaluate-code", {
         challenge: challenge.problem, // or the full challenge if you change the backend
         solution: solution,
         language: language,
+        candidate_name: candidateName,
       });
+
+      const evaluationResult = {
+        ...response.data,
+        candidateName,
+      };
 
       localStorage.setItem(
         "evaluationData",
-        JSON.stringify(response.data)
+        JSON.stringify(evaluationResult)
       );
 
       navigate("/proof");

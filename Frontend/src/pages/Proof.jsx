@@ -22,8 +22,9 @@ function Proof() {
     );
   }
 
+  const resumeData = JSON.parse(localStorage.getItem("resumeData")) || {};
   const candidateName =
-    proof.name || proof.candidateName || proof.resumeName || "Candidate";
+    resumeData.candidate_name || proof.candidateName || proof.name || proof.resumeName || resumeData.name || resumeData.filename || resumeData.resumeName || "Candidate";
 
   const today = new Date().toLocaleDateString("en-GB");
 

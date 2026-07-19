@@ -12,62 +12,66 @@ client = OpenAI(
 
 
 def extract_skills(resume_text: str):
+
     prompt = f"""
-You are an expert ATS (Applicant Tracking System).
+You are an expert ATS Resume Parser.
 
-Analyze the resume below.
+Your task is to analyze ONLY the resume text below.
 
-Extract ONLY technical skills.
+IMPORTANT RULES:
 
-For every skill return:
+1. Extract the candidate's FULL NAME from the resume text ONLY.
+2. NEVER use the uploaded filename.
+3. NEVER guess the name.
+4. Ignore company names.
+5. Ignore job titles.
+6. If the name cannot be found, return an empty string.
 
-- name
-- category
-- confidence (0-100)
+Also extract ONLY technical skills.
 
-Categories can only be one of:
+Include:
+- Programming Languages
+- Frameworks
+- Libraries
+- Databases
+- Cloud Platforms
+- DevOps
+- Testing
+- Version Control
+- IDEs
 
-Frontend
-Backend
-Programming Language
-Database
-Cloud
-DevOps
-Testing
-Version Control
-AI Tools
-Other
+Do NOT include:
+- Soft Skills
+- Companies
+- Degrees
+- Certifications
+- Roles
 
 Return ONLY valid JSON.
 
 Example:
 
 {{
-  "skills":[
-    {{
-      "name":"React",
-      "category":"Frontend",
-      "confidence":98
-    }},
-    {{
-      "name":"Node.js",
-      "category":"Backend",
-      "confidence":96
-    }},
-    {{
-      "name":"MongoDB",
-      "category":"Database",
-      "confidence":95
-    }}
-  ]
+    "name": "Tanvi Goel",
+    "skills": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "PostgreSQL",
+        "Git",
+        "Jest"
+    ]
 }}
 
-Resume:
+Resume Text:
 
 {resume_text}
 """
+
     response = client.chat.completions.create(
         model="google/gemini-2.5-flash-lite",
+        temperature=0,
         messages=[
             {
                 "role": "user",
@@ -76,21 +80,30 @@ Resume:
         ]
     )
 
-    ai_response = response.choices[0].message.content
+    ai_response = response.choices[0].message.content.strip()
 
     print("\n========== AI RESPONSE ==========")
     print(ai_response)
     print("=================================\n")
 
-    # Remove markdown if the model wraps JSON in ```json
+    # Remove markdown if present
     ai_response = ai_response.replace("```json", "")
     ai_response = ai_response.replace("```", "")
     ai_response = ai_response.strip()
 
     try:
-        skills = json.loads(ai_response)
-        return skills
+        parsed = json.loads(ai_response)
+
+        return {
+            "name": parsed.get("name", ""),
+            "skills": parsed.get("skills", [])
+        }
 
     except Exception as e:
+
         print("JSON Parsing Error:", e)
-        return {"skills": []}
+
+        return {
+            "name": "",
+            "skills": []
+        }
