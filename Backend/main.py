@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 from app.routes.resume import router as resume_router
 from app.routes.challenge import router as challenge_router
@@ -8,10 +9,26 @@ from app.routes.proof import router as proof_router
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5173",
-    # We'll add the frontend URL after deploying to Vercel
-]
+
+def _get_allowed_origins():
+    # Read comma-separated origins from environment variable FRONTEND_URLS
+    env = os.getenv("FRONTEND_URLS")
+    defaults = [
+        "http://localhost:5173",
+        "https://hackathon-eiti.vercel.app",
+    ]
+    if not env:
+        return defaults
+    parts = [p.strip() for p in env.split(",") if p.strip()]
+    # merge defaults and env-provided, preserving unique values
+    origins = []
+    for u in parts + defaults:
+        if u not in origins:
+            origins.append(u)
+    return origins
+
+
+origins = _get_allowed_origins()
 
 app.add_middleware(
     CORSMiddleware,
