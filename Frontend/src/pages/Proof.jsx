@@ -75,7 +75,7 @@ function Proof() {
 
         <div
           ref={certificateRef}
-          className="bg-white text-black rounded-3xl p-14 mt-10 border-[12px] border-cyan-700 shadow-[0_30px_80px_-40px_rgba(6,182,212,0.35)]"
+          className="bg-white text-black rounded-3xl p-14 mt-10 border-12 border-cyan-700 shadow-[0_30px_80px_-40px_rgba(6,182,212,0.35)]"
         >
           <div className="flex justify-center">
             <ShieldCheck size={70} className="text-cyan-700" />
